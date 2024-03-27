@@ -16,6 +16,8 @@ android {
         versionCode = ProjectConfig.versionCode
         versionName = ProjectConfig.versionName
 
+        multiDexEnabled = true
+
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary = true
@@ -32,6 +34,7 @@ android {
         }
     }
     compileOptions {
+        isCoreLibraryDesugaringEnabled = true
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
@@ -52,8 +55,7 @@ android {
 }
 
 dependencies {
-
-//    implementation("androidx.core:core-ktx:1.12.0")
+    //    implementation("androidx.core:core-ktx:1.12.0")
 //    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
 //    implementation("androidx.activity:activity-compose:1.8.2")
 //    implementation(platform("androidx.compose:compose-bom:2023.08.00"))
@@ -69,11 +71,15 @@ dependencies {
 //    debugImplementation("androidx.compose.ui:ui-tooling")
 //    debugImplementation("androidx.compose.ui:ui-test-manifest")
 
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.4")
+
     implementation(Compose.compiler)
     implementation(Compose.ui)
     implementation(Compose.uiToolingPreview)
+    implementation(Compose.uiTooling)
     implementation(Compose.hiltNavigationCompose)
     implementation(Compose.material)
+    implementation(Compose.material3)
     implementation(Compose.runtime)
     implementation(Compose.navigation)
     implementation(Compose.viewModelCompose)
@@ -83,6 +89,7 @@ dependencies {
     kapt(DaggerHilt.hiltCompiler)
 
     implementation(project(Modules.core))
+    implementation(project(Modules.coreUi))
     implementation(project(Modules.onboardingPresentation))
     implementation(project(Modules.onboardingDomain))
     implementation(project(Modules.trackerPresentation))

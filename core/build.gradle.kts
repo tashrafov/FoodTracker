@@ -3,7 +3,9 @@ plugins {
     `kotlin-android`
 }
 
-apply(from = "$rootDir/base-module.gradle")
+apply {
+    from("$rootDir/base-module.gradle")
+}
 
 android {
     namespace = "com.ashrafovtaghi.core"
