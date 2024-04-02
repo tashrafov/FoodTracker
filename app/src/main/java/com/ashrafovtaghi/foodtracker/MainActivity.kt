@@ -17,8 +17,10 @@ import androidx.navigation.compose.rememberNavController
 import com.ashrafovtaghi.core.navigation.Route
 import com.ashrafovtaghi.foodtracker.navigation.navigate
 import com.ashrafovtaghi.foodtracker.ui.theme.FoodTrackerTheme
+import com.ashrafovtaghi.onboarding_presentation.activity.ActivityScreen
 import com.ashrafovtaghi.onboarding_presentation.age.AgeScreen
 import com.ashrafovtaghi.onboarding_presentation.gender.GenderScreen
+import com.ashrafovtaghi.onboarding_presentation.goal.GoalScreen
 import com.ashrafovtaghi.onboarding_presentation.height.HeightScreen
 import com.ashrafovtaghi.onboarding_presentation.weight.WeightScreen
 import com.ashrafovtaghi.onboarding_presentation.welcome.WelcomeScreen
@@ -33,8 +35,7 @@ class MainActivity : ComponentActivity() {
                 val navController = rememberNavController()
                 val scaffoldState = rememberScaffoldState()
                 Scaffold(
-                    modifier = Modifier.fillMaxSize(),
-                    scaffoldState = scaffoldState
+                    modifier = Modifier.fillMaxSize(), scaffoldState = scaffoldState
                 ) { innerPadding ->
                     NavHost(
                         modifier = Modifier.padding(innerPadding),
@@ -46,8 +47,7 @@ class MainActivity : ComponentActivity() {
                         }
                         composable(Route.AGE) {
                             AgeScreen(
-                                scaffoldState = scaffoldState,
-                                onNavigate = navController::navigate
+                                scaffoldState = scaffoldState, onNavigate = navController::navigate
                             )
                         }
                         composable(Route.GENDER) {
@@ -55,24 +55,22 @@ class MainActivity : ComponentActivity() {
                         }
                         composable(Route.HEIGHT) {
                             HeightScreen(
-                                scaffoldState = scaffoldState,
-                                onNavigate = navController::navigate
+                                scaffoldState = scaffoldState, onNavigate = navController::navigate
                             )
                         }
                         composable(Route.WEIGHT) {
                             WeightScreen(
-                                scaffoldState = scaffoldState,
-                                onNavigate = navController::navigate
+                                scaffoldState = scaffoldState, onNavigate = navController::navigate
                             )
                         }
                         composable(Route.NUTRIENT_GOAL) {
 
                         }
                         composable(Route.ACTIVITY) {
-
+                            ActivityScreen(onNavigate = navController::navigate)
                         }
                         composable(Route.GOAL) {
-
+                            GoalScreen(onNavigate = navController::navigate)
                         }
                         composable(Route.TRACKER_OVERVIEW) {
 
