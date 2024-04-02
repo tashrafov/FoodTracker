@@ -19,6 +19,8 @@ import com.ashrafovtaghi.foodtracker.navigation.navigate
 import com.ashrafovtaghi.foodtracker.ui.theme.FoodTrackerTheme
 import com.ashrafovtaghi.onboarding_presentation.age.AgeScreen
 import com.ashrafovtaghi.onboarding_presentation.gender.GenderScreen
+import com.ashrafovtaghi.onboarding_presentation.height.HeightScreen
+import com.ashrafovtaghi.onboarding_presentation.weight.WeightScreen
 import com.ashrafovtaghi.onboarding_presentation.welcome.WelcomeScreen
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -52,10 +54,16 @@ class MainActivity : ComponentActivity() {
                             GenderScreen(onNavigate = navController::navigate)
                         }
                         composable(Route.HEIGHT) {
-
+                            HeightScreen(
+                                scaffoldState = scaffoldState,
+                                onNavigate = navController::navigate
+                            )
                         }
                         composable(Route.WEIGHT) {
-
+                            WeightScreen(
+                                scaffoldState = scaffoldState,
+                                onNavigate = navController::navigate
+                            )
                         }
                         composable(Route.NUTRIENT_GOAL) {
 
