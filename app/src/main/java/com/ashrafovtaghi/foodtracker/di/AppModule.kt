@@ -6,6 +6,7 @@ import android.content.SharedPreferences
 import com.ashrafovtaghi.core.data.preferences.DefaultPreferences
 import com.ashrafovtaghi.core.domain.preferences.Preferences
 import com.ashrafovtaghi.core.domain.usecase.FilterOutDigits
+import com.ashrafovtaghi.onboarding_domain.usecase.ValidateNutrients
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
