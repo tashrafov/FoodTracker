@@ -11,10 +11,10 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface TrackerDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertTrackedFood(trackedFoodEntity: TrackedFoodEntity)
+    fun insertTrackedFood(vararg trackedFood: TrackedFoodEntity)
 
     @Delete
-    suspend fun deleteTrackedFood(trackedFoodEntity: TrackedFoodEntity)
+    fun deleteTrackedFood(trackedFoodEntity: TrackedFoodEntity)
 
     @Query("SELECT * FROM tracked_food where dayOfMonth = :dayOfMonth and month = :month and year = :year")
     fun getFoodForDate(dayOfMonth: Int, month: Int, year: Int): Flow<List<TrackedFoodEntity>>
