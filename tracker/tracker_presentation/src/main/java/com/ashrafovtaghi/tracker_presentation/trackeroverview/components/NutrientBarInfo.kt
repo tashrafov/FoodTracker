@@ -3,6 +3,7 @@ package com.ashrafovtaghi.tracker_presentation.trackeroverview.components
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.aspectRatio
@@ -32,7 +33,7 @@ fun NutrientBarInfo(
     name: String,
     color: Color,
     modifier: Modifier = Modifier,
-    strokeWidth: Dp = 4.dp
+    strokeWidth: Dp = 8.dp
 ) {
     val background = MaterialTheme.colors.background
     val goalExceededColor = MaterialTheme.colors.error
@@ -89,19 +90,26 @@ fun NutrientBarInfo(
         }
         Column(
             modifier = Modifier.fillMaxWidth(),
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
         ) {
             UnitDisplay(
                 amount = value,
                 unit = stringResource(id = R.string.grams),
-                amountColor = if (value <= goal) MaterialTheme.colors.onPrimary else goalExceededColor,
-                unitTextColor = if (value <= goal) MaterialTheme.colors.onPrimary else goalExceededColor,
+                amountColor = if (value <= goal) {
+                    MaterialTheme.colors.onPrimary
+                } else goalExceededColor,
+                unitTextColor = if (value <= goal) {
+                    MaterialTheme.colors.onPrimary
+                } else goalExceededColor
             )
             Text(
                 text = name,
+                color = if (value <= goal) {
+                    MaterialTheme.colors.onPrimary
+                } else goalExceededColor,
                 style = MaterialTheme.typography.body1,
-                fontWeight = FontWeight.Light,
-                color = if (value <= goal) MaterialTheme.colors.onPrimary else goalExceededColor
+                fontWeight = FontWeight.Light
             )
         }
     }

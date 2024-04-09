@@ -9,6 +9,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.LastBaseline
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.sp
@@ -25,17 +28,21 @@ fun UnitDisplay(
     unitTextColor: Color = MaterialTheme.colors.onBackground
 ) {
     val spacing = LocalSpacing.current
-    Row(modifier){
+    Row(modifier = modifier) {
         Text(
             text = amount.toString(),
-            style = MaterialTheme.typography.h1,
+            style = TextStyle(
+                fontFamily = FontFamily.Default,
+                fontWeight = FontWeight.Normal,
+                fontSize = 30.sp
+            ),
             fontSize = amountSize,
             color = amountColor,
             modifier = Modifier.alignBy(LastBaseline)
         )
         Spacer(modifier = Modifier.width(spacing.spaceExtraSmall))
         Text(
-            text = unit.toString(),
+            text = unit,
             style = MaterialTheme.typography.body1,
             fontSize = unitTextSize,
             color = unitTextColor,

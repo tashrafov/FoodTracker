@@ -74,7 +74,7 @@ fun FoodTrackerTheme(
     CompositionLocalProvider(LocalSpacing provides Dimensions()) {
         MaterialTheme(
             colorScheme = colorScheme,
-            typography = Typography,
+            typography = MaterialTheme.typography,
             content = content
         )
     }
