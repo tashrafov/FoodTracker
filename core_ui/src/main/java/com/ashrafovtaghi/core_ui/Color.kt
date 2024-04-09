@@ -1,4 +1,4 @@
-package com.ashrafovtaghi.foodtracker.ui.theme
+package com.ashrafovtaghi.core_ui
 
 import androidx.compose.ui.graphics.Color
 
