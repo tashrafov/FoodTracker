@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
@@ -51,7 +52,8 @@ fun TrackedFoodItem(
             .padding(spacing.spaceExtraSmall)
             .shadow(1.dp, shape = RoundedCornerShape(5.dp))
             .background(MaterialTheme.colors.surface)
-            .padding(end = spacing.spaceMedium),
+            .padding(end = spacing.spaceMedium)
+            .height(100.dp),
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
         Image(

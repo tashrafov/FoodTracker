@@ -11,6 +11,7 @@ import com.ashrafovtaghi.core.util.UIText
 import com.ashrafovtaghi.core.util.UiEvent
 import com.ashrafovtaghi.tracker_domain.usecase.TrackerUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
@@ -72,7 +73,7 @@ class SearchViewModel @Inject constructor(
         }
     }
 
-    private fun executeSearch() = viewModelScope.launch {
+    private fun executeSearch() = viewModelScope.launch(Dispatchers.IO) {
         state = state.copy(
             isSearching = true, trackableFoods = emptyList()
         )
@@ -93,7 +94,7 @@ class SearchViewModel @Inject constructor(
             }
     }
 
-    private fun trackFood(event: SearchEvent.OnTrackFood) = viewModelScope.launch {
+    private fun trackFood(event: SearchEvent.OnTrackFood) = viewModelScope.launch(Dispatchers.IO) {
         val uiState = state.trackableFoods.find { it.food == event.food } ?: return@launch
         trackerUseCases.trackFoodUseCase(
             food = uiState.food,
