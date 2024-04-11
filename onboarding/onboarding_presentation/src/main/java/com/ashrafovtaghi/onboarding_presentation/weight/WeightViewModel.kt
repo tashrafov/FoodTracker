@@ -9,7 +9,6 @@ import com.ashrafovtaghi.core.R
 import com.ashrafovtaghi.core.domain.models.Gender
 import com.ashrafovtaghi.core.domain.preferences.Preferences
 import com.ashrafovtaghi.core.domain.usecase.FilterOutDigits
-import com.ashrafovtaghi.core.navigation.Route
 import com.ashrafovtaghi.core.util.UIText
 import com.ashrafovtaghi.core.util.UiEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -42,7 +41,7 @@ class WeightViewModel @Inject constructor(
                 return@launch
             }
             preferences.saveWeight(weightNumber)
-            _uiEvents.send(UiEvent.Navigate(Route.ACTIVITY))
+            _uiEvents.send(UiEvent.Success)
         }
     }
 }

@@ -1,4 +1,4 @@
-package com.ashrafovtaghi.core.navigation
+package com.ashrafovtaghi.foodtracker.navigation
 
 object Route {
     const val WELCOME = "welcome"
