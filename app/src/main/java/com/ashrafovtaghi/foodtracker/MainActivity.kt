@@ -16,6 +16,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.ashrafovtaghi.core.domain.preferences.Preferences
 import com.ashrafovtaghi.core.navigation.Route
 import com.ashrafovtaghi.foodtracker.navigation.navigate
 import com.ashrafovtaghi.foodtracker.ui.theme.FoodTrackerTheme
@@ -31,11 +32,15 @@ import com.ashrafovtaghi.tracker_presentation.search.SearchScreen
 import com.ashrafovtaghi.tracker_presentation.trackeroverview.TrackerOverviewScreen
 import dagger.hilt.android.AndroidEntryPoint
 import java.time.LocalDate
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+    @Inject
+    lateinit var preferences: Preferences
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val shouldShowOnboarding = preferences.loadShouldShowOnboarding()
         setContent {
             FoodTrackerTheme {
                 val navController = rememberNavController()
@@ -46,7 +51,7 @@ class MainActivity : ComponentActivity() {
                     NavHost(
                         modifier = Modifier.padding(innerPadding),
                         navController = navController,
-                        startDestination = Route.WELCOME
+                        startDestination = if(shouldShowOnboarding) Route.WELCOME else Route.TRACKER_OVERVIEW
                     ) {
                         composable(Route.WELCOME) {
                             WelcomeScreen(onNavigate = navController::navigate)
@@ -87,16 +92,16 @@ class MainActivity : ComponentActivity() {
                         composable(
                             route = Route.SEARCH + "/{mealName}/{dayOfMonth}/{month}/{year}",
                             arguments = listOf(
-                                navArgument("mealName"){
+                                navArgument("mealName") {
                                     type = NavType.StringType
                                 },
-                                navArgument("dayOfMonth"){
+                                navArgument("dayOfMonth") {
                                     type = NavType.IntType
                                 },
-                                navArgument("month"){
+                                navArgument("month") {
                                     type = NavType.IntType
                                 },
-                                navArgument("year"){
+                                navArgument("year") {
                                     type = NavType.IntType
                                 },
                             )

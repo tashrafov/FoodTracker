@@ -100,6 +100,7 @@ fun SearchScreen(
                         viewModel.onEvent(SearchEvent.OnAmountForFoodChanged(food.food, it))
                     },
                     onTrack = {
+                        keyboardController?.hide()
                         viewModel.onEvent(
                             SearchEvent.OnTrackFood(
                                 food = food.food,

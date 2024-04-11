@@ -10,6 +10,7 @@ import com.ashrafovtaghi.core.navigation.Route
 import com.ashrafovtaghi.core.util.UiEvent
 import com.ashrafovtaghi.tracker_domain.usecase.TrackerUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.launchIn
@@ -33,6 +34,7 @@ class TrackerOverviewViewModel @Inject constructor(
     private var getFoodForDateJob: Job? = null
 
     init {
+        refreshFood()
         preferences.saveShouldShowOnboarding(false)
     }
 
@@ -53,7 +55,7 @@ class TrackerOverviewViewModel @Inject constructor(
             }
 
             is TrackerOverviewEvent.OnDeleteTrackedFoodClick -> {
-                viewModelScope.launch {
+                viewModelScope.launch(Dispatchers.IO) {
                     trackerUseCases.deleteTrackedFoodUseCase(event.trackedFood)
                     refreshFood()
                 }
