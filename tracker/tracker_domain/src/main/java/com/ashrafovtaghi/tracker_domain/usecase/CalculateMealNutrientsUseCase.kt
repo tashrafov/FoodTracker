@@ -13,7 +13,7 @@ class CalculateMealNutrientsUseCase(
     private val preferences: Preferences
 ) {
 
-    suspend operator fun invoke(trackedFoods: List<TrackedFood>):Result {
+    operator fun invoke(trackedFoods: List<TrackedFood>):Result {
         val allNutrients = trackedFoods.groupBy { it.mealType }.mapValues { entry ->
             val mealType = entry.key
             val foods = entry.value
