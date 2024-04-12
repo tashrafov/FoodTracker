@@ -4,6 +4,8 @@ import com.ashrafovtaghi.tracker_domain.model.MealType
 import com.ashrafovtaghi.tracker_domain.model.TrackableFood
 import com.ashrafovtaghi.tracker_domain.model.TrackedFood
 import com.ashrafovtaghi.tracker_domain.repository.TrackerRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import java.time.LocalDate
 import kotlin.math.roundToInt
 
@@ -14,7 +16,7 @@ class TrackFoodUseCase(private val repository: TrackerRepository) {
         amount: Int,
         mealType: MealType,
         date: LocalDate
-    ) {
+    ) = withContext(Dispatchers.IO) {
         repository.insertTrackedFood(
             TrackedFood(
                 name = food.name,

@@ -73,7 +73,7 @@ class SearchViewModel @Inject constructor(
         }
     }
 
-    private fun executeSearch() = viewModelScope.launch(Dispatchers.IO) {
+    private fun executeSearch() = viewModelScope.launch {
         state = state.copy(
             isSearching = true, trackableFoods = emptyList()
         )
@@ -94,7 +94,7 @@ class SearchViewModel @Inject constructor(
             }
     }
 
-    private fun trackFood(event: SearchEvent.OnTrackFood) = viewModelScope.launch(Dispatchers.IO) {
+    private fun trackFood(event: SearchEvent.OnTrackFood) = viewModelScope.launch {
         val uiState = state.trackableFoods.find { it.food == event.food } ?: return@launch
         trackerUseCases.trackFoodUseCase(
             food = uiState.food,

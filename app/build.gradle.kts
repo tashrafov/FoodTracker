@@ -18,9 +18,20 @@ android {
 
         multiDexEnabled = true
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "com.ashrafovtaghi.foodtracker.HiltTestRunner"
         vectorDrawables {
             useSupportLibrary = true
+        }
+
+        packagingOptions.resources.merges.addAll(listOf("META-INF/LICENSE-notice.md"))
+        packagingOptions.resources.merges.addAll(listOf("META-INF/LICENSE.md"))
+
+        testOptions {
+            packagingOptions {
+                jniLibs {
+                    useLegacyPackaging = true
+                }
+            }
         }
     }
 
@@ -132,4 +143,5 @@ dependencies {
     androidTestImplementation(Testing.hiltTesting)
     kaptAndroidTest(DaggerHilt.hiltCompiler)
     androidTestImplementation(Testing.testRunner)
+    androidTestImplementation(Testing.navigationTesting)
 }
